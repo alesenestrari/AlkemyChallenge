@@ -25,6 +25,7 @@ export class PlatoDetailComponent implements OnInit {
   constructor(private platoService: PlatoService, private route: ActivatedRoute, private router: Router, private alert: AlertService, private menuService: MenuService) { }
 
   ngOnInit(): void {
+    //Aqui seteo el id que tengo como parametro en el route, para cargar el plato correspondiente.
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
@@ -36,6 +37,7 @@ export class PlatoDetailComponent implements OnInit {
     )
   }
 
+  //Metodo para agregar un plato
   onAddMenu() {
     var plato = {
       title: this.plato.title,

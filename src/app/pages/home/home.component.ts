@@ -17,53 +17,44 @@ export class HomeComponent implements OnInit {
 
   srh = "";
 
-  @ViewChild('searchRef') searchRef: ElementRef;
-
   private readonly searchSubject = new Subject<string>();
 
   searchSub: Subscription;
 
-  menus: [PlatoDetailResponse];
-
   menu: Menu[] = [];
 
-  precioTotal: number;
-  cantidadPlatos: number;
-  hScore: number;
-  tiempoPromedio: number;
 
   srch = new Subject<PlatoResponse[]>();
 
   datas= new AttrMenu();
 
-  resultados!: PlatoResponse[];
-
-  platosConDescripcion: PlatoDetailResponse[];
-
   constructor(private platoService: PlatoService, private menuService: MenuService) { }
 
   ngOnInit(): void {
 
+    //Aqui me subscribo al sujeto que tiene la string ingresada en el form y cuando ingresa 2 caracteres, espera 1 segundo, y llama al metodo buscar del servicio.
     this.searchSubject.pipe(filter(res => res?.length >= 2), debounceTime(1000), distinctUntilChanged()).subscribe(response => {
       this.platoService.buscarPlatos(response);
     });
 
+    //Obtengo los datos sumarizados de los atributos del menu.
     this.menuService.menusSub.pipe(tap(respo => {
       this.datas = this.menuService.getData(respo);
     }))
     .subscribe(res => {
       this.menu = res;
     });
-    
+    //Aqui ultimo obtengo la lista de los menus agregados.
 
   }
 
+  //Obtengo el string del input, lo limpio y hago un next.
   onSearchQueryInput(e: Event) {
     const searchQuery = (e.target as HTMLInputElement).value;
     this.searchSubject.next(searchQuery?.trim());
   }
 
-
+//Llamo al servicio para borrar un plato del menu.
   onDeletePlato(i: number) {
     this.menuService.deletePlato(i, this.menu);
   }

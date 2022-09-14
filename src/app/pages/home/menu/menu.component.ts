@@ -20,6 +20,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   constructor(private platoService: PlatoService) { }
 
   ngOnInit(): void {
+    //Obtengo los platos
    this.sus = this.platoService.platosSub.subscribe(res => {
       this.resultados = res;
     });

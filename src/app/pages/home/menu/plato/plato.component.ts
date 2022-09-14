@@ -9,6 +9,8 @@ import { PlatoService } from 'src/app/services/plato.service';
 })
 export class PlatoComponent implements OnInit {
   
+  // Paso como input desde el menu component el id y el plato.
+
   @Input() idd: number;
   
   @Input() plato: Results;

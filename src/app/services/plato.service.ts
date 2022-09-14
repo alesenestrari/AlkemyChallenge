@@ -30,6 +30,7 @@ export class PlatoService {
 
     }
 
+    //Metodo para buscar platos con la string que paso desde home. 
     buscarPlatos(bus: string) {
         const busqueda = 'query=' + bus;
         this.http.get<PlatoResponse>(this.urlSearch + this.api + busqueda + '&addRecipeInformation=true').subscribe(res => {
