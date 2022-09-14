@@ -1,0 +1,44 @@
+<ng-container *ngIf="plato" >
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+             <img [src]="plato.image"  alt="{{ plato.title }}" class="img-responsive" style="max-height: 100px;" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>
+                    {{ plato.title }}
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+              <h4><strong>Precio: </strong> </h4>  {{ plato.pricePerServing }}
+            </div>
+            <div class="col-xs-12">
+                <h4><strong>Porciones: </strong> </h4> {{ plato.servings }}
+            </div>
+            <div class="col-xs-12">
+                <h4><strong>Tiempo:  </strong></h4> {{ plato.readyInMinutes }} <h6> minutos.</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div
+                    class="btn-group dropdown"
+                    >
+                    <button 
+                    type="button" 
+                    class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" id="dropdownMenuButton1">
+                    Administrar <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" style="cursor: pointer;" (click)="onAddMenu()" >Agregar a menu</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</ng-container>

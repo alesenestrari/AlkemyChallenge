@@ -1,0 +1,40 @@
+<br>
+<h3 style="text-align: center;">Formulario Login</h3>
+<br>
+<br>
+<div class="container justify-content-center">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10">
+            <form [formGroup]="login" (ngSubmit)="onLogin()">
+                <div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" formControlName="email" [(ngModel)]="user.email" class="form-control" email> 
+                        <span 
+                        *ngIf="login.get('email')?.errors?.required && login.get('email')?.touched"
+                        class="help-block">Campo obligatorio.
+                        <span *ngIf="login.get('email')?.errors?.email">Ingrese un email valido.</span></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="paswordd" formControlName="password" [(ngModel)]="user.password" class="form-control">
+                        <span *ngIf="login.get('password')?.errors?.required && login.get('password')?.touched"
+                        class="help-block">Contraseña es requerida.</span>
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="form-group">
+                        <button class="btn btn-success" type="submit" [disabled]="!login.valid || loading">
+                            Enviar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div *ngIf="loading" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+    </div>
+</div>

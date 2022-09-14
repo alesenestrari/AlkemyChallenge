@@ -1,0 +1,63 @@
+<div class="container shadow min-vh-100 py-4">
+    <div class="row mt-5">
+        <div class="col-md-5 mx-auto">
+            
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="small fw-light">Busque sus platos.</div>
+            <form>
+                <input class="form-control border-end-0" type="search" placeholder="Buscar..." [(ngModel)]="srh" [ngModelOptions]="{standalone: true}" (input)="onSearchQueryInput($event)">
+                <button type="submit" class="border-start-0 ">
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
+            <div *ngIf="loading" class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                </div>
+            </div>
+            <br>
+            <div>
+                <app-menu class="list-group"></app-menu>
+            </div>
+        </div>
+        <div class="col-md-3 " style="max-height: 300px;">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col-md-4 mx-auto ">
+            <div style="border: 1px solid; background-color: azure;" *ngIf="menu.length >= 1">
+                <h6>Precio: <em>{{ datas.price }} </em></h6>
+                <h6>Tiempo promedio: <em>{{ (datas.tiempo)/(menu.length) }} </em> </h6>
+                <h6>Health Score promedio: <em> {{ (datas.healthScore)/(menu.length) }}</em> </h6>
+            </div>
+            <div class="list-group-item" *ngFor="let men of menu; let i = index" style="border: 1px solid;">
+                    <div class="col-xs-2">
+                        <h6>{{ men.title }}</h6>
+                    </div>
+                    <div class="col-xs-12">
+                        <img [src]="men.image" alt="{{ men.title }}" style="max-height: 100px;">
+                    </div>
+                    <div>
+                        <h6><strong>Vegano: </strong><em> {{ ((men.vegan) ? 'Si.' : 'No.')  }}</em></h6>
+                    </div>
+                    <div>
+                        <h6><strong>Tiempo listo: </strong> <em> {{ men.time }}</em></h6>
+                    </div>
+                    <div>
+                        <h6><strong>HealthScore: </strong><em> {{ men.healthScore }} </em></h6>
+                    </div>
+                    <div>
+                        <h6><strong>Precio: </strong><em>  {{ men.price }}</em></h6>
+                    </div>
+                <div>
+                    <button class="btn btn-warning" (click)="onDeletePlato(i)">
+                        Eliminar Plato.
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

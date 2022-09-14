@@ -1,0 +1,9 @@
+<div class="row" style="border: 1px solid; align-items: center;">
+    <div class="col-md-5" >
+        <app-plato
+        *ngFor="let plato of resultados; let i = index"
+        [plato]="plato"
+        [idd]="plato.id"
+        class="list-group" style="margin-bottom: 10px;"></app-plato>
+    </div>
+</div>

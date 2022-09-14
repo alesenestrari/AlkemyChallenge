@@ -1,0 +1,18 @@
+<a 
+[routerLink]="[idd]"
+routerLinkActive="active"
+style="cursor: pointer; border: 1px solid; padding-bottom: 10px; width: 250px;"
+class="list-group-item clearfix">
+<div class="pull-left">
+    <h4 class="list-group-item-heading">{{ plato.title  }}</h4>
+    <p class="list-group-item-text">{{ ((plato.vegan) ? "Vegano." : "No Vegano.") }}</p>
+    <p class="list-group-item-text">Precio: {{ plato.pricePerServing }} </p>
+</div>
+<span class="pull-right">
+    <img 
+        [src]="plato.image" 
+        alt="{{ plato.title }}" 
+        class="img-responsive" 
+        style="max-height: 50px;">
+</span>
+</a>
